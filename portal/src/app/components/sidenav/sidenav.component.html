@@ -1,0 +1,111 @@
+<!-- Mobile Hamburger Button -->
+<button 
+  class="mobile-toggle"
+  [class.mobile-only]="!isMobile"
+  (click)="toggleSidenav()"
+  aria-label="Toggle navigation menu">
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+</button>
+
+<!-- Mobile Overlay -->
+<div 
+  class="mobile-overlay"
+  [class.active]="isMobile && isOpen"
+  (click)="closeSidenav()">
+</div>
+
+<!-- Sidenav Container -->
+<nav 
+  class="sidenav"
+  [class.collapsed]="isCollapsed && !isMobile"
+  [class.mobile-open]="isMobile && isOpen"
+  [class.mobile-closed]="isMobile && !isOpen">
+  
+  <!-- Header -->
+  <div class="sidenav-header">
+    <div class="brand" [class.collapsed]="isCollapsed && !isMobile">
+      <span class="brand-icon">🤖</span>
+      <span class="brand-text" *ngIf="!(isCollapsed && !isMobile)">Bot Facturación</span>
+    </div>
+    
+    <!-- Desktop Toggle Button -->
+    <button 
+      class="collapse-btn desktop-only"
+      (click)="toggleSidenav()"
+      [attr.aria-label]="isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'">
+      <span class="collapse-icon" [class.rotated]="isCollapsed">❮</span>
+    </button>
+  </div>
+
+  <!-- Navigation Menu -->
+  <div class="sidenav-content">
+    <ul class="nav-menu">
+      <li class="nav-item" *ngFor="let item of menuItems">
+        
+        <!-- Menu Item with Children -->
+        <div *ngIf="item.children; else singleItem" class="nav-link-container">
+          <button 
+            class="nav-link"
+            [class.expanded]="item.expanded"
+            (click)="toggleMenuItem(item)"
+            [attr.aria-expanded]="item.expanded">
+            <span class="nav-icon">{{ item.icon }}</span>
+            <span class="nav-text" *ngIf="!(isCollapsed && !isMobile)">{{ item.label }}</span>
+            <span class="nav-arrow" *ngIf="!(isCollapsed && !isMobile)" [class.rotated]="item.expanded">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+          
+          <!-- Submenu -->
+          <ul class="nav-submenu" [class.expanded]="item.expanded" *ngIf="!(isCollapsed && !isMobile)">
+            <li class="nav-subitem" *ngFor="let child of item.children">
+              <button 
+                class="nav-sublink"
+                (click)="navigateToRoute(child.route!)"
+                [attr.aria-label]="child.label">
+                <span class="nav-subicon">{{ child.icon }}</span>
+                <span class="nav-subtext">{{ child.label }}</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Single Menu Item Template -->
+        <ng-template #singleItem>
+          <button 
+            class="nav-link"
+            (click)="navigateToRoute(item.route!)"
+            [attr.aria-label]="item.label">
+            <span class="nav-icon">{{ item.icon }}</span>
+            <span class="nav-text" *ngIf="!(isCollapsed && !isMobile)">{{ item.label }}</span>
+          </button>
+        </ng-template>
+
+      </li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <div class="sidenav-footer" *ngIf="!(isCollapsed && !isMobile)">
+    <div class="user-info">
+      <div class="user-avatar">👤</div>
+      <div class="user-details">
+        <div class="user-name">Usuario</div>
+        <div class="user-role">Administrador</div>
+      </div>
+    </div>
+    <button class="logout-btn" aria-label="Cerrar sesión">
+      <span>🚪</span>
+    </button>
+  </div>
+  
+  <!-- Collapsed Footer -->
+  <div class="sidenav-footer-collapsed" *ngIf="isCollapsed && !isMobile">
+    <button class="user-avatar-collapsed" aria-label="Usuario">👤</button>
+    <button class="logout-btn-collapsed" aria-label="Cerrar sesión">🚪</button>
+  </div>
+</nav>

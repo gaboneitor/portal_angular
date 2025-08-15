@@ -1,0 +1,70 @@
+<!-- Login Hero -->
+<section class="login-hero" aria-labelledby="login-title">
+  <div class="container login-content">
+
+    <div class="login-form-section">
+      <div class="login-header">
+        <h1 id="login-title">Iniciar Sesión</h1>
+        <p class="login-subtitle">Accede a tu panel de automatización de facturación</p>
+      </div>
+
+      <form class="login-form" id="login-form" novalidate>
+        <div class="form-field">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="tu@empresa.com" required />
+          <span class="error-message" id="email-error"></span>
+        </div>
+        
+        <div class="form-field">
+          <label for="password">Contraseña</label>
+          <div class="password-input-wrapper">
+            <input type="password" id="password" name="password" placeholder="Tu contraseña" required />
+            <button type="button" class="password-toggle" aria-label="Mostrar contraseña">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" fill="none"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </button>
+          </div>
+          <span class="error-message" id="password-error"></span>
+        </div>
+
+        <div class="form-options">
+          <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-lg btn-full" (click)="onLogin()">
+            <span class="btn-text">Iniciar Sesión</span>
+            <span class="btn-loading" style="display: none;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-dasharray="31.416" stroke-dashoffset="31.416">
+                  <animate attributeName="stroke-dasharray" dur="2s" values="0 31.416;15.708 15.708;0 31.416" repeatCount="indefinite"/>
+                  <animate attributeName="stroke-dashoffset" dur="2s" values="0;-15.708;-31.416" repeatCount="indefinite"/>
+                </circle>
+              </svg>
+              Iniciando sesión...
+            </span>
+          </button>
+        </div>
+
+      </form>
+
+      <div class="login-footer">
+        <p>¿No tienes una cuenta? <a href="#" class="signup-link">Regístrate aquí</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="hero-wave" aria-hidden="true"></div>
+</section>
+
+<!-- Footer simplificado -->
+<footer class="site-footer" aria-label="Pie de página">
+  <div class="container footer-wrap">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">🤖</span>
+      <span class="brand-text">Bot Facturación</span>
+    </div>
+    <p class="legal">© 2024 Bot Facturación. Todos los derechos reservados.</p>
+  </div>
+</footer>

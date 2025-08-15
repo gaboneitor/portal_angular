@@ -1,0 +1,38 @@
+.dashboard-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.main-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 280px; /* Default sidenav width */
+  display: flex;
+  flex-direction: column;
+  transition: left 0.3s ease;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  background: var(--gray-100);
+}
+
+/* Mobile: Full width, no left offset */
+@media (max-width: 767px) {
+  .main-content {
+    left: 0;
+    width: 100%;
+  }
+  
+  .content-wrapper {
+    padding: 1rem;
+    padding-top: 80px; /* Space for mobile toggle button */
+  }
+}
