@@ -8,6 +8,8 @@ export const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
     {path: 'dashboard',component: DashboardComponent,
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
         children: [
             {path: '', component: HomeComponent},
             {path: 'reportes/diario', component: HomeComponent}, // Placeholder
@@ -25,6 +27,5 @@ export const routes: Routes = [
             {path: 'alertas/log-errores', component: HomeComponent}, // Placeholder
             {path: 'chat', component: HomeComponent}, // Placeholder
         ],
-        canActivate: [AuthGuard]
     }
 ];
