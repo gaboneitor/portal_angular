@@ -2,13 +2,12 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home.component';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
-    {
-        path: 'dashboard',
-        component: DashboardComponent,
+    {path: 'dashboard',component: DashboardComponent,
         children: [
             {path: '', component: HomeComponent},
             {path: 'reportes/diario', component: HomeComponent}, // Placeholder
@@ -25,6 +24,7 @@ export const routes: Routes = [
             {path: 'alertas/errores-pac', component: HomeComponent}, // Placeholder
             {path: 'alertas/log-errores', component: HomeComponent}, // Placeholder
             {path: 'chat', component: HomeComponent}, // Placeholder
-        ]
+        ],
+        canActivate: [AuthGuard]
     }
 ];
